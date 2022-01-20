@@ -1,0 +1,22 @@
+#!/bin/bash
+yum update -y
+curl -O http://vestacp.com/pub/vst-install.sh
+sleep 3
+bash vst-install.sh --nginx yes --apache yes --phpfpm no --named no --remi no --vsftpd no --proftpd no --iptables no --fail2ban no --quota no --exim no --dovecot no --spamassassin no --clamav no --softaculous no --mysql no --postgresql no --hostname server.voiranime.com --email info@voiranime.com --force
+#sleep 20
+
+
+rm -rf /home/admin/conf/web/server.voiranime.com.nginx.conf
+read -p "Please enter current server ip " ip1
+read -p "please enter destination server ip "  ip
+
+echo "server {
+    listen      $ip1:80;
+    server_name voiranime.com www.voiranime.com;
+    error_log  /var/log/httpd/domains/server.voiranime.com.error.log error;
+
+    location / {
+        proxy_pass      http://$ip;
+} }" >> /home/admin/conf/web/server.voiranime.com.nginx.conf
+
+service nginx restart
