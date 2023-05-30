@@ -12,7 +12,7 @@ read -p "please enter destination server ip "  ip
 
 echo "server {
     listen      $ip1:80;
-    server_name voiranime.com www.voiranime.com;
+    server_name voiranime.com www.voiranime.com v2.voiranime.com v3.voiranime.com v4.voiranime.com v5.voiranime.com;
     error_log  /var/log/httpd/domains/server.voiranime.com.error.log error;
 
     location / {
