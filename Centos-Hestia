@@ -1,0 +1,22 @@
+#!/bin/bash
+yum update -y
+yum install wget -y
+wget https://raw.githubusercontent.com/hestiacp/hestiacp/release/install/hst-install.sh
+sleep 3
+sudo bash hst-install.sh --apache no --phpfpm yes --multiphp no --vsftpd yes --proftpd no --named yes --mysql yes --postgresql no --exim no --dovecot no --sieve no --clamav no --spamassassin no --iptables yes --fail2ban yes --quota no --api no --interactive yes --with-debs no  --port '8083' --hostname 'hostname.domain.tld' --email 'mikasa@gmx.fr' --password 'DaPwUxDsqdazeArGw' --lang 'en'   
+#sleep 20
+
+
+rm -rf /home/admin/conf/web/server.voiranime.com.nginx.conf
+read -p "Please enter current server ip " ip1
+read -p "please enter destination server ip "  ip
+
+echo "server {
+    listen      $ip1:80;
+    server_name voiranime.com www.voiranime.com x1.voiranime.com;
+    error_log  /var/log/httpd/domains/server.voiranime.com.error.log error;
+    location / {
+        proxy_pass      http://$ip;
+} }" >> /home/admin/conf/web/server.voiranime.com.nginx.conf
+
+service nginx restart
