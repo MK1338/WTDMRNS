@@ -1,5 +1,5 @@
 #!/bin/bash
-apt update -y
+apt update -y && apt upgrade -y
 apt install wget -y
 wget https://raw.githubusercontent.com/hestiacp/hestiacp/release/install/hst-install.sh
 sleep 3
