@@ -3,7 +3,7 @@ apt update -y
 apt install wget -y
 wget https://raw.githubusercontent.com/hestiacp/hestiacp/release/install/hst-install.sh
 sleep 3
-sudo bash hst-install.sh --apache no --phpfpm yes --multiphp no --vsftpd yes --proftpd no --named yes --mysql yes --postgresql no --exim no --dovecot no --sieve no --clamav no --spamassassin no --iptables yes --fail2ban yes --quota no --api no --interactive yes --with-debs no  --port '8083' --hostname 'hostname.domain.tld' --email 'mikasa@gmx.fr' --password 'DaPwUxDsqdazeArGw' --lang 'en'   
+sudo bash hst-install.sh --nginx yes --apache yes --phpfpm no --named no --remi no --vsftpd no --proftpd no --iptables no --fail2ban no --quota no --exim no --dovecot no --spamassassin no --clamav no --softaculous no --mysql no --postgresql no --hostname server.voiranime.com --email info@voiranime.com --force   
 #sleep 20
 
 
