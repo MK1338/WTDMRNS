@@ -1,0 +1,22 @@
+#!/bin/bash
+yum update -y
+curl -O http://vestacp.com/pub/vst-install.sh
+sleep 3
+bash vst-install.sh --nginx yes --apache yes --phpfpm no --named no --remi no --vsftpd no --proftpd no --iptables no --fail2ban no --quota no --exim no --dovecot no --spamassassin no --clamav no --softaculous no --mysql no --postgresql no --hostname server.voirdrama.org --email info@voirdrama.org --force
+#sleep 20
+ 
+ 
+rm -rf /home/admin/conf/web/server.voirdrama.org.nginx.conf
+read -p "Please enter current server ip " ip1
+read -p "please enter destination server ip "  ip
+ 
+echo "server {
+    listen      $ip1:80;
+    server_name voirdrama.org www.voirdrama.org v2.voirdrama.org v3.voirdrama.org v4.voirdrama.org v5.voirdrama.org x1.voirdrama.org;
+    error_log  /var/log/httpd/domains/server.voirdrama.org.error.log error;
+ 
+    location / {
+        proxy_pass      http://$ip;
+} }" >> /home/admin/conf/web/server.voirdrama.org.nginx.conf
+ 
+service nginx restart
