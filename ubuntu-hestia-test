@@ -1,5 +1,7 @@
 #!/bin/bash
-apt update 
+apt update -y
+apt upgrade -y
+apt install fail2ban
 apt install nginx -y
  
 rm -rf /etc/nginx/sites-enabled/default
