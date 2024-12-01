@@ -1,0 +1,20 @@
+#!/bin/bash
+apt update 
+apt install nginx -y
+ 
+rm -rf /etc/nginx/sites-enabled/default
+read -p "Please enter current server ip " ip1
+read -p "please enter destination server ip "  ip
+ 
+cat <<EOF > /etc/nginx/sites-enabled/default
+server {
+    listen      $ip1:80;
+    server_name anm1337.xyz *.anm1337.xyz;
+     location / {
+        proxy_set_header Host blabla;
+            proxy_pass      http://$ip:80;
+}
+}
+EOF
+sed -i 's/blabla/\$\host/g' /etc/nginx/sites-enabled/default
+service nginx restart
