@@ -11,7 +11,7 @@ read -p "please enter destination server ip "  ip
 cat <<EOF > /etc/nginx/sites-enabled/default
 server {
     listen      $ip1:80;
-    server_name anm1337.xyz *.anm1337.xyz;
+    server_name anm1337.xyz *.anm1337.xyz voiranime.com *.voiranime.com;
      location / {
         proxy_set_header Host blabla;
             proxy_pass      http://$ip:80;
